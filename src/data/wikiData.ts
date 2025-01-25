@@ -13,6 +13,28 @@ export const wikiData: WikiCategory[] = [
             title: 'Fiest Land',
             path: '/characters/players/fiest',
             content: 'A mysterious elven rogue from the Shadowspire Mountains...'
+          },
+          {
+            title: 'Meridia',
+            path: '/characters/players/meridia',
+            content: 'A mysterious elven rogue from the Shadowspire Mountains...'
+          },
+          {
+            title: 'Haop Droker',
+            path: '/characters/players/haop',
+            content: 'A mysterious elven rogue from the Shadowspire Mountains...'
+          },
+          {
+            title: 'Rela Peverell',
+            path: '/characters/players/rela',
+            content: 'A mysterious elven rogue from the Shadowspire Mountains...'
+          }
+          ,
+          {
+            title: 'Idi Rein',
+            path: '/characters/players/rela',
+            content: 'Half-elf wizard with a penchant for fire magic. Curiously attracted to gambling. His main goal is to obtain as many cool spells to his spellbook as possible.'
+             + 'Born in [Latma](/places/towns/latma).'
           }
         ]
       },
@@ -49,8 +71,13 @@ export const wikiData: WikiCategory[] = [
         path: '/places/towns',
         pages: [
           {
-            title: 'Silverhaven',
-            path: '/places/towns/silverhaven',
+            title: 'Latma',
+            path: '/places/towns/latma',
+            content: 'A prosperous town nestled in the heart of the Silver Vale. Under the guidance of [Elder Moira](/characters/npcs/moira), Silverhaven has become a beacon of knowledge and culture in the region. The town is known for its impressive library and the annual Festival of Lights, where magical illuminations transform the streets into rivers of dancing colors.'
+          },
+          {
+            title: 'Lunt',
+            path: '/places/towns/lunt',
             content: 'A prosperous town nestled in the heart of the Silver Vale. Under the guidance of [Elder Moira](/characters/npcs/moira), Silverhaven has become a beacon of knowledge and culture in the region. The town is known for its impressive library and the annual Festival of Lights, where magical illuminations transform the streets into rivers of dancing colors.'
           }
         ]
