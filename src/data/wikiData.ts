@@ -10,8 +10,8 @@ export const wikiData: WikiCategory[] = [
         path: '/characters/players',
         pages: [
           {
-            title: 'Theron Shadowweaver',
-            path: '/characters/players/theron',
+            title: 'Fiest Land',
+            path: '/characters/players/fiest',
             content: 'A mysterious elven rogue from the Shadowspire Mountains...'
           }
         ]
