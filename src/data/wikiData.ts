@@ -32,7 +32,7 @@ export const wikiData: WikiCategory[] = [
           ,
           {
             title: 'Idi Rein',
-            path: '/characters/players/rela',
+            path: '/characters/players/idi',
             content: 'Half-elf wizard with a penchant for fire magic. Curiously attracted to gambling. His main goal is to obtain as many cool spells to his spellbook as possible.'
              + 'Born in [Latma](/places/towns/latma).'
           }
