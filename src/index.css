@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sepia {
+  @apply bg-amber-50;
+  @apply text-amber-900;
+}
+
+.prose {
+  @apply text-gray-800 dark:text-gray-200;
+}
