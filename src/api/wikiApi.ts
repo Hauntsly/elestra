@@ -32,6 +32,20 @@ export const fetchWikiPage = async (path: string): Promise<WikiPageData | null> 
     return data;
 };
 
+export const updateWikiPage = async (
+  path: string,
+  updates: { title: string; content: string }
+) => {
+  const { data, error } = await supabase
+    .from('page') // Replace with your actual table name
+    .update(updates)
+    .eq('path', path)
+    .single();
+
+  if (error) throw error;
+  return data;
+};
+
 export interface WikiSubcategory {
   name: string;
   path: string;

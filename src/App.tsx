@@ -22,7 +22,7 @@ function App() {
           <ThemeToggle theme={theme} setTheme={setTheme} />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/:category/:subcategory/:page" element={<WikiPage />} />
+            <Route path="*" element={<WikiPage />} />
           </Routes>
         </div>
       </div>
