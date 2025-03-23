@@ -46,6 +46,24 @@ export const updateWikiPage = async (
   return data;
 };
 
+export const createWikiPage = async (
+  newPage: Omit<WikiPageData, 'id' | 'created_at' | 'updated_at'>
+): Promise<WikiPageData> => {
+  const { data, error } = await supabase
+    .from('page')
+    .insert(newPage)
+    .select()
+    .single(); // <-- this ensures it returns the inserted row
+
+  if (error || !data) {
+    console.error('Error creating wiki page:', error);
+    throw error;
+  }
+
+  return data;
+};
+
+
 export interface WikiSubcategory {
   name: string;
   path: string;
