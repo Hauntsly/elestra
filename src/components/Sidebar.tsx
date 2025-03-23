@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, ChevronRight, Search } from 'lucide-react';
-import { wikiData } from '../data/wikiData';
+import { fetchWikiStructure, WikiCategory } from '../api/wikiApi';
 
 const Sidebar = () => {
+  const [wikiData, setWikiData] = useState<WikiCategory[]>([]);
   const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
   const [expandedSubcategories, setExpandedSubcategories] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const location = useLocation();
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await fetchWikiStructure();
+      setWikiData(data);
+    };
+    loadData();
+  }, []);
 
   const toggleCategory = (category: string) => {
     setExpandedCategories(prev =>
@@ -21,7 +30,6 @@ const Sidebar = () => {
     );
   };
 
-  // Flatten wikiData to a searchable list of pages
   const allPages = wikiData.flatMap(category =>
     category.subcategories.flatMap(subcat =>
       subcat.pages.map(page => ({
@@ -31,7 +39,6 @@ const Sidebar = () => {
     )
   );
 
-  // Filter pages based on search query
   const filteredPages = allPages.filter(page =>
     page.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -89,7 +96,7 @@ const Sidebar = () => {
               {expandedCategories.includes(category.name) && (
                 <div className="ml-4">
                   {category.subcategories.map(subcategory => (
-                    <div key={subcategory.name}>
+                    <div key={subcategory.path}>
                       <button
                         onClick={() => toggleSubcategory(subcategory.path)}
                         className="flex items-center w-full text-left py-2 text-gray-600 dark:text-gray-300 sepia:text-amber-800 hover:bg-gray-100 dark:hover:bg-gray-700 sepia:hover:bg-amber-100 rounded-lg px-2"
