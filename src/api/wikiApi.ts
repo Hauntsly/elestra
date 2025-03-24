@@ -35,16 +35,20 @@ export const fetchWikiPage = async (path: string): Promise<WikiPageData | null> 
 export const updateWikiPage = async (
   path: string,
   updates: { title: string; content: string }
-) => {
+): Promise<WikiPageData> => {
   const { data, error } = await supabase
-    .from('page') // Replace with your actual table name
+    .from('page')
     .update(updates)
     .eq('path', path)
+    .select('*') // <- This tells Supabase to return the updated row
     .single();
 
   if (error) throw error;
-  return data;
+  if (!data) throw new Error('No page found with the given path');
+
+  return data as WikiPageData;
 };
+
 
 export const createWikiPage = async (
   newPage: Omit<WikiPageData, 'id' | 'created_at' | 'updated_at'>

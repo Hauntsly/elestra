@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { fetchWikiPage, WikiPageData } from '../api/wikiApi'; // Import the API function and type
 import ReactMarkdown from 'react-markdown';
 import { Pen } from 'lucide-react';
@@ -9,6 +9,7 @@ import { updateWikiPage } from '../api/wikiApi';
 const WikiPage = () => {
     const { '*': pathParam } = useParams();
     const currentPath = `/${pathParam}`;
+    const navigate = useNavigate();
     
     const [pageData, setPageData] = useState<WikiPageData | null>(null);
     const [loading, setLoading] = useState(true);
@@ -82,9 +83,14 @@ const WikiPage = () => {
                     title: editedTitle,
                     content: editedContent,
                   });
-
-                  setPageData(updated);
-                  setEditing(false);
+                  
+                  if (updated.path !== currentPath) {
+                    navigate(updated.path);
+                  } else {
+                    setPageData(updated);
+                    setEditing(false);
+                  }
+                  
                 } catch (err) {
                   alert('Failed to save changes');
                   console.error(err);
