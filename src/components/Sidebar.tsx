@@ -35,19 +35,41 @@ const Sidebar = () => {
   const handleAddPage = async (categoryName: string, subcategoryName: string) => {
     const title = prompt('Enter page title:');
     if (!title) return;
-
+  
     const slug = title.toLowerCase().replace(/\s+/g, '-');
     const path = `/${categoryName}/${subcategoryName}/${slug}`;
-
+  
+    const defaultCharacterContent = `
+  Coming soon...
+  
+  ---
+  
+  - **Age:** ?  
+  - **Status:** ?  
+  - **Race:** ?  
+  - **First Appearance:** ?  
+  - **Affiliation:** ?  
+  - **Occupation:** ?  
+  - **Notable Abilities:** ?  
+  - **Last Known Location:** ?
+  
+  ---
+  `;
+  
+    const defaultContent =
+      categoryName.toLowerCase() === 'characters'
+        ? defaultCharacterContent
+        : 'Coming soon...';
+  
     try {
       const newPage = await createWikiPage({
         title,
         path,
-        content: `# ${title}\n\nComing soon...`,
+        content: defaultContent,
         category: categoryName,
         subcategory: subcategoryName,
       });
-
+  
       await loadData(); // Refresh sidebar
       window.location.href = newPage.path;
     } catch (err) {
@@ -55,6 +77,7 @@ const Sidebar = () => {
       console.error(err);
     }
   };
+  
 
   const allPages = wikiData.flatMap(category =>
     category.subcategories.flatMap(subcat =>
