@@ -1,3 +1,3 @@
 # TODO
-[] delete pages
-[] edit path
+-[ ] delete pages
+-[ ] edit path
