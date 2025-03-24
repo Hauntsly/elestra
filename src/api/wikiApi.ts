@@ -56,12 +56,12 @@ export const createWikiPage = async (
   const { data, error } = await supabase
     .from('page')
     .insert(newPage)
-    .select()
+    .select('*')
     .single(); // <-- this ensures it returns the inserted row
 
   if (error || !data) {
     console.error('Error creating wiki page:', error);
-    throw error;
+    throw error ?? new Error('No data returned from insert');
   }
 
   return data;
